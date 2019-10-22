@@ -1,45 +1,366 @@
-<div class="container-fluid">
-  <div class="row">
-      <h2>Realtime Chat Application</h2>
-      <hr>
-  </div>
-  <div class="row">
-      <div class="col-sm-5">
-          <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
-              <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
-          </div>
-      </div>
-      <div class="col-sm-5">
-          <label for="roomInput">Choose room</label>
-          <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
-              <option value="Lobby">Lobby</option>
-              <option value="Hall">Hall</option>
-              <option value="Deluxe">Deluxe</option>
-          </select>
-      </div>
-      <div class="col sm-2">
-          <div style="margin-top:19px;" class="pull-right"> 
-              <button type="button" class="btn btn-primary" (click)="join()">Join</button>
-              <button type="button" class="btn btn-default" (click)="leave()">Leave</button>
-          </div>
-      </div>
-  </div>
 
-  <div class="row">
-      <div class="well" style="height:200px; padding:15px;">
-          <div *ngFor="let item of messageArray">
-          <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+  <title>Algorithm</title>
+
+  <!-- Favicons -->
+  <!-- <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <!-- Libraries CSS Files -->
+  <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <!-- <link href="styles.css" rel="stylesheet">
+ -->
+
+  
+  <!--==========================
+  Header
+  ============================-->
+
+  <header id="header">
+
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="#intro" class="scrollto"><span>Rapid</span></a></h1> 
+    </div>
+      
+    </div> 
+  </header>
+  <!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <div *ngIf="header_flag">
+
+
+  <section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-md-12 intro-info ">
+          <h2>Start Algorithm</h2>
+       
+          <div>    
+          
+            <button type="button"  class="btn-get-started scrollto" (click)="start_challenge()">Start Challenge</button>
+
+            <!-- <a href="#about" class="btn-get-started scrollto">Start Challenge</a> -->
+            <!-- <a href="#about" class="btn-get-started scrollto">Join Challenge</a> -->
+            <button type="button"  class="btn-get-started scrollto" (click)="join_challenge()">Join Challenge</button>
+
           </div>
+        </div>
       </div>
-  </div>
-  <div class="row">
-      <div class="col-sm-10">
-          <input type="text" class="form-control" [(ngModel)]="messageText">            
-      </div>
-      <div class="col-sm-2">
-              <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
-      </div>
-  </div>
+    </div>
+  </section>
 </div>
+
+
+
+ <div class="code-editor"  #codeEditor></div>
+ asd
+ <div class="code-editor" style="width: 500px; height:500px;" #codeEditor2></div>
+ 
+  <!-- #intro -->
+  <!-- <button type="button"   id ='elementId2'>Upload</button> -->
+
+      <div *ngIf="start_challenge_flag">
+       
+
+        <h3>Angular 7 Image Preview before Upload:</h3>
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <input  type="file" accept='pdf' (change)="preview($event)" />
+
+        <img [src]="imgURL" height="200" *ngIf="imgURL">
+        <a [href]="imgURL" >click</a>
+
+
+
+        <input type="file" id='file-id'[(ngModel)]="file" (change)="onFileSelected($event)" name="uploadFile" value="Upload" />
+        <button type="button" id ='elementId' (click)="onUpload()">Upload</button>
+
+        <!-- <button type="button"  ng-click="document.getElementById('file-id').files[0].name" id ='elementId'>Upload</button> -->
+        <h1>CODE: {{code}}</h1>
+        <button type="button"  class="btn-get-started scrollto" (click)="join_challenge()">Start</button>
+
+      </div>
+
+
+      
+
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <div *ngIf="main_challenge_flag">
+             
+
+
+    <section id="about">
+
+   <div class="container">
+      <button type="button"  class="btn-get-started scrollto" (click)="exit_challenge()">Exit Challenge</button>
+     
+        <h3>Team Board</h3>
+       
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+                            
+ <div class="md-form">
+   
+
+  <textarea type="text" id="form7" class="md-textarea form-control" mdbInput></textarea>
+  
+</div>
+          </div>
+
+          <div class="col-lg-5 col-md-6">
+                            <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" id="accordion">
+                        <span class="glyphicon glyphicon-comment"></span> Chat
+                        <div class="btn-group pull-right">
+                            <a type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                        </div>
+                    </div>
+                <div class="panel-collapse collapse" id="collapseOne">
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                            </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix"><span class="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                            </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                            </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                            <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix"><span class="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                            </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                        <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+          </div>
+        </div>
+      </div> 
+    </section>
+    <!-- #about -->
+
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+   <div class="container">
+
+        <header class="section-header">
+          <h3>Services</h3>
+          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </div>
+          </div>
+        
+
+        </div>
+
+      </div> 
+    </section>
+    <!-- #services -->
+  </div>
+    
+  <!--==========================
+    Footer
+  ============================-->
+  <!-- <footer id="footer" class="section-bg"> -->
+    <!-- <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
+      </div>
+      <div class="credits"> -->
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Rapid
+        -->
+        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div> -->
+  <!-- </footer> -->
+  
+  <!-- #footer -->
+
+  <!-- <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a> -->
+  
+  
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="/lib/jquery/jquery.min.js"></script>
+  <script src="/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/lib/easing/easing.min.js"></script>
+  <script src="/lib/mobile-nav/mobile-nav.js"></script>
+  <script src="/lib/wow/wow.min.js"></script>
+  <script src="/lib/waypoints/waypoints.min.js"></script>
+  <script src="/lib/counterup/counterup.min.js"></script>
+  <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="/lib/lightbox/js/lightbox.min.js"></script> 
+  
+  <!-- Contact Form JavaScript File -->
+  <!-- <script src="contactform/contactform.js"></script> -->
+
+  <!-- Template Main Javascript File -->
+  <script src="/src/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div *ngIf="join_challenge_flag">
+
+      <label for="username">Username</label>
+      <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
+  
+      <label for="roomInput">Enter Code</label>
+      <input type="text" [(ngModel)]="code" class="form-control" id="class_code" placeholder="Enter Code">
+     
+      <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+      
+  </div>
+<!-- <h2>Chat</h2>
+
+    <label for="username">Username</label>
+    <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
+
+    <label for="roomInput">Enter Code</label>
+    <input type="text" [(ngModel)]="code" class="form-control" id="class_code" placeholder="Enter Code">
+   
+    <button type="button" class="btn btn-primary" (click)="join()">Join</button>
+    
+    <div *ngFor="let item of messageArray">
+        <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+    </div>
+        
+    <input type="text" class="form-control" [(ngModel)]="messageText">            
+       
+    <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+     -->
+
+
